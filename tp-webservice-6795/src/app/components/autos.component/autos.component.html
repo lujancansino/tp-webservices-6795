@@ -1,0 +1,90 @@
+<main class="py-5" style="background-color: #f8f9fa;">
+
+    <div class="container text-center mb-5 py-5 px-4 rounded-4 shadow"
+        style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: white;">
+        <i class="bi bi-car-front-fill mb-3" style="font-size: 3rem; color: #3b82f6;"></i>
+        <h1 class="display-5 fw-bold mb-3">Catálogo de Marcas</h1>
+        <p class="mx-auto" style="max-width: 600px; font-size: 1.1rem; color: #cbd5e1;">
+            Explorá nuestra exclusiva selección de marcas y descubrí todos los modelos disponibles en nuestra base de
+            datos.
+        </p>
+    </div>
+
+    <div class="container">
+        <section class="row g-4 justify-content-center">
+
+            <div class="col-6 col-md-4 col-lg-3 d-flex justify-content-center" *ngFor="let marca of marcas">
+                <div class="card-custom">
+                    <div class="card-inner w-100 h-100 position-relative shadow-sm rounded-4">
+
+                        <div
+                            class="card-front bg-white border rounded-4 position-absolute w-100 h-100 d-flex flex-column justify-content-center align-items-center text-center">
+                            <div class="icon-circle bg-light rounded-circle d-flex justify-content-center align-items-center mb-3"
+                                style="width: 70px; height: 70px;">
+                                <i class="bi bi-shield-shaded fs-2 text-primary"></i>
+                            </div>
+                            <h4 class="fw-bold text-dark text-uppercase m-0" style="letter-spacing: 1px;">{{ marca.name
+                                }}</h4>
+                        </div>
+
+                        <div class="card-back rounded-4 p-3 position-absolute w-100 h-100 d-flex flex-column justify-content-center align-items-center text-center"
+                            style="background-color: #2c3e50;">
+                            <h5 class="fw-bold text-white mb-3">{{ marca.name }}</h5>
+
+                            <button class="btn btn-primary fw-bold px-4 rounded-pill shadow-sm"
+                                (click)="verModelos(marca)" data-bs-toggle="modal"
+                                data-bs-target="#catalogoModalPremium">
+                                <i class="bi bi-search me-1"></i> Ver Modelos
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+</main>
+
+<div class="modal fade" id="catalogoModalPremium" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+
+            <div class="modal-header text-white" style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);">
+                <h5 class="modal-title fw-bold">
+                    <i class="bi bi-card-checklist me-2"></i> Modelos de {{ marcaActual }}
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body bg-light p-0">
+
+                <div *ngIf="modelosSeleccionados.length === 0" class="text-center py-5">
+                    <div class="spinner-grow text-primary mb-3" style="width: 3rem; height: 3rem;" role="status"></div>
+                    <h6 class="text-muted fw-bold">Conectando con la base de datos...</h6>
+                </div>
+
+                <div class="list-group list-group-flush" *ngIf="modelosSeleccionados.length > 0">
+                    <div class="list-group-item bg-light border-bottom d-flex align-items-center py-3 px-4"
+                        *ngFor="let modelo of modelosSeleccionados">
+
+                        <div class="bg-white border rounded-3 d-flex justify-content-center align-items-center shadow-sm me-3"
+                            style="width: 45px; height: 45px;">
+                            <i class="bi bi-car-front-fill text-primary" style="font-size: 1.5rem;"></i>
+                        </div>
+
+                        <span class="fw-bold text-dark fs-6">{{ modelo.name }}</span>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer bg-white border-top-0">
+                <button type="button" class="btn btn-outline-secondary fw-bold rounded-pill px-4"
+                    data-bs-dismiss="modal">Cerrar Catálogo</button>
+            </div>
+
+        </div>
+    </div>
+</div>
