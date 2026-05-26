@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
 })
 export class ConversorService {
 
-  // La API Key que me pasaste
   private apiKey = '9vURFWp5RwjCeFPaAEQXAmvBO8EKeQ8X';
 
   constructor(private http: HttpClient) { }

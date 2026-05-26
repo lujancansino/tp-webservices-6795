@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ConversorComponent } from "./conversor.component";
+import { GeneradorQrComponent } from "./generador-qr.component";
 
-
-describe("ConversorComponent", () => {
-  let component: ConversorComponent;
-  let fixture: ComponentFixture<ConversorComponent>;
+describe("GeneradorQrComponent", () => {
+  let component: GeneradorQrComponent;
+  let fixture: ComponentFixture<GeneradorQrComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ConversorComponent],
+      imports: [GeneradorQrComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ConversorComponent);
+    fixture = TestBed.createComponent(GeneradorQrComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

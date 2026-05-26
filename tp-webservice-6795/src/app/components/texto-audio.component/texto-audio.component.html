@@ -1,0 +1,86 @@
+<main class="py-5" style="background-color: #f4f6f9; min-height: 100vh;">
+    <div class="container">
+
+        <div class="text-center mb-5 fade-in-rapido">
+            <h1 class="display-4 fw-bold text-dark">
+                <i class="bi bi-mic-fill text-primary"></i> Lector de Textos Inteligente
+            </h1>
+            <p class="text-muted fs-5">Convertí cualquier texto en un audio realista.</p>
+        </div>
+
+        <div class="row justify-content-center fade-in-medio">
+            <div class="col-12 col-lg-8">
+                <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                    <div class="card-body p-4 p-md-5 bg-white">
+
+                        <form>
+                            <div class="mb-4">
+                                <label class="form-label fw-bold text-muted"><i
+                                        class="bi bi-chat-left-text me-2"></i>Texto a leer</label>
+                                <textarea class="form-control rounded-3 bg-light" rows="4" [(ngModel)]="texto"
+                                    name="textoInput"
+                                    placeholder="Escribí acá lo que querés que la IA diga..."></textarea>
+                            </div>
+
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold text-muted"><i
+                                            class="bi bi-globe me-2"></i>Idioma</label>
+                                    <select class="form-select form-select-lg" [(ngModel)]="idiomaSeleccionado"
+                                        name="idiomaSelect">
+                                        <option value="Spanish">Español</option>
+                                        <option value="English">Inglés</option>
+                                        <option value="French">Francés</option>
+                                        <option value="Portuguese">Portugués</option>
+                                        <option value="Italian">Italiano</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold text-muted"><i
+                                            class="bi bi-person-lines-fill me-2"></i>Tipo de Voz</label>
+                                    <select class="form-select form-select-lg" [(ngModel)]="vozSeleccionada"
+                                        name="vozSelect">
+                                        <option value="alloy">Alloy (Neutral)</option>
+                                        <option value="echo">Echo (Grave)</option>
+                                        <option value="fable">Fable (Narrador)</option>
+                                        <option value="nova">Nova (Femenina dinámica)</option>
+                                        <option value="shimmer">Shimmer (Femenina clara)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="mt-5 text-center">
+                                <button type="button"
+                                    class="btn btn-primary btn-lg px-5 py-3 fw-bold rounded-pill shadow-sm"
+                                    (click)="generarAudio()" [disabled]="cargando">
+                                    <span *ngIf="!cargando">Generar Audio <i class="bi bi-magic ms-2"></i></span>
+                                    <span *ngIf="cargando">
+                                        <div class="spinner-border spinner-border-sm me-2" role="status"></div>
+                                        Sintetizando voz...
+                                    </span>
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+
+                    <div class="card-footer bg-light text-center py-4 border-top" *ngIf="objetUrl !== '' || cargando">
+                        <p class="mb-3 fw-bold text-primary text-uppercase" *ngIf="objetUrl !== ''">¡Audio Listo!</p>
+
+                        <audio #reproductor controls class="w-100 shadow-sm rounded-pill"
+                            [class.d-none]="objetUrl === ''">
+                            Tu navegador no soporta el elemento de audio.
+                        </audio>
+
+                        <div *ngIf="cargando" class="text-muted fst-italic">
+                            Preparando el reproductor...
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>

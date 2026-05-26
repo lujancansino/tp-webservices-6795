@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ConversorComponent } from "./conversor.component";
+import { TextoAudioComponent } from "./texto-audio.component";
 
-
-describe("ConversorComponent", () => {
-  let component: ConversorComponent;
-  let fixture: ComponentFixture<ConversorComponent>;
+describe("TextoAudioComponent", () => {
+  let component: TextoAudioComponent;
+  let fixture: ComponentFixture<TextoAudioComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ConversorComponent],
+      imports: [TextoAudioComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ConversorComponent);
+    fixture = TestBed.createComponent(TextoAudioComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

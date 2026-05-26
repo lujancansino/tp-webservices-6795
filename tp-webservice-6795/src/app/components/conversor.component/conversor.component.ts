@@ -6,7 +6,7 @@ import { ConversorService } from '../../services/conversor.service';
 @Component({
   selector: 'app-conversor',
   standalone: true,
-  imports: [CommonModule, FormsModule], // <-- Lo agregamos acá también
+  imports: [CommonModule, FormsModule], 
   templateUrl: './conversor.component.html',
   styleUrls: ['./conversor.component.css']
 })
@@ -26,14 +26,16 @@ export class ConversorComponent {
 
   constructor(private conversorService: ConversorService, private cdr: ChangeDetectorRef) {}
 
+  //el ngOnInit se ejecuta apenas se carga el componente, ideal para cargar la lista de monedas
   ngOnInit(): void {
     this.cargarListaMonedas();
   }
 
 cargarListaMonedas() {
+  //el suscribe es para manejar la respuesta de la API, ya que es asíncrona. El primer bloque es para el caso exitoso, el segundo bloque es para manejar errores.
     this.conversorService.obtenerMonedas().subscribe(
       (data: any) => {
-        if (data && data.success) {
+        if (data && data.success) { //el data.success es una propiedad que devuelve la API para indicar si la consulta fue exitosa o no. Siempre es bueno verificarla antes de procesar los datos.
           // Transformamos el objeto gigante en un Array limpio
           this.listaMonedas = Object.keys(data.currencies).map(key => {
             return {

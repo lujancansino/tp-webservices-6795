@@ -1,0 +1,54 @@
+<main class="py-5" style="background-color: #f4f6f9; min-height: 100vh;">
+    <div class="container">
+        
+        <div class="text-center mb-5 fade-in-rapido">
+            <h1 class="display-4 fw-bold text-dark">
+                <i class="bi bi-qr-code-scan text-primary"></i> Generador de QR
+            </h1>
+            <p class="text-muted fs-5">Creá códigos QR al instante para tus links, menús o contactos.</p>
+        </div>
+
+        <div class="row justify-content-center fade-in-medio">
+            <div class="col-12 col-md-8 col-lg-6">
+                <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                    <div class="card-body p-4 p-md-5 bg-white text-center">
+                        
+                        <form (submit)="generar(); $event.preventDefault()">
+                            <div class="mb-4 text-start">
+                                <label class="form-label fw-bold text-muted">Enlace o Texto</label>
+                                <div class="input-group input-group-lg shadow-sm rounded-3">
+                                    <span class="input-group-text bg-light border-end-0"><i class="bi bi-link-45deg text-primary"></i></span>
+                                    <input type="text" class="form-control border-start-0 ps-0" placeholder="Ej: https://mi-portfolio.com" [(ngModel)]="textoIngresado" name="textoInput">
+                                </div>
+                            </div>
+
+                            <button type="button" class="btn btn-primary btn-lg w-100 fw-bold rounded-pill shadow-sm mb-4" (click)="generar()" [disabled]="cargando">
+                                <span *ngIf="!cargando">Crear Código QR <i class="bi bi-qr-code ms-2"></i></span>
+                                <span *ngIf="cargando"><div class="spinner-border spinner-border-sm me-2"></div> Procesando...</span>
+                            </button>
+                        </form>
+
+                        <div class="mt-4 pt-4 border-top" *ngIf="qrBase64 !== '' || cargando">
+                            
+                            <h5 class="fw-bold text-dark mb-3" *ngIf="qrBase64 !== ''">¡Tu código está listo!</h5>
+
+                            <div class="p-5" *ngIf="cargando">
+                                <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status"></div>
+                            </div>
+
+                            <div *ngIf="qrBase64 !== ''" class="d-inline-block p-3 bg-white border rounded-4 shadow-sm fade-in-rapido">
+                                <img [src]="qrBase64" alt="Código QR Generado" class="img-fluid rounded" style="max-width: 250px;">
+                            </div>
+                            
+                            <p class="text-muted small mt-3" *ngIf="qrBase64 !== ''">
+                                Podés escanearlo con la cámara de tu celular.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
